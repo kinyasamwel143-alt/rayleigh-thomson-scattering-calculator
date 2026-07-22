@@ -233,16 +233,16 @@
           <p id="result-context">进入 0.01 sr 收集立体角的散射信号</p>
         </div>
 
-        <div class="result-grid two-result-columns">
+        <div class="result-grid">
           <article class="result-card primary-result">
             <p>瑞利散射功率</p>
             <strong id="scattered-power">0.588 W</strong>
             <span>脉冲期间平均值</span>
-            <div class="secondary-metric">
-              <p>仪器内汤姆逊散射光子数（μ·η·G）</p>
-              <strong id="instrument-thomson-photon-count">8.51 × 10³</strong>
-              <span>仪器等效计数 / pulse</span>
-            </div>
+          </article>
+          <article class="result-card">
+            <p>仪器内汤姆逊散射光子数（μ·η·G）</p>
+            <strong id="instrument-thomson-photon-count">8.51 × 10³</strong>
+            <span>仪器等效计数 / pulse</span>
           </article>
           <article class="result-card">
             <p>汤姆逊散射功率</p>
@@ -253,7 +253,8 @@
 
         <div class="calculation-details">
           <dl>
-            <div><dt>激光脉冲功率 / 汤姆逊总光子数</dt><dd><span id="laser-power">200 MW</span><br><span id="thomson-photon-count">8.51 × 10³ photons/pulse</span></dd></div>
+            <div><dt>激光脉冲功率</dt><dd id="laser-power">200 MW</dd></div>
+            <div><dt>汤姆逊总光子数</dt><dd id="thomson-photon-count">8.51 × 10³ photons/pulse</dd></div>
             <div><dt>气体数密度</dt><dd id="number-density">2.50 × 10²⁵ m⁻³</dd></div>
             <div><dt>瑞利微分截面</dt><dd id="differential-cross-section">5.87 × 10⁻³² m²/sr</dd></div>
             <div><dt>电子密度</dt><dd id="electron-density-output">1.00 × 10¹⁸ m⁻³</dd></div>
