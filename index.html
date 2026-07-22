@@ -61,6 +61,7 @@
               <span>nm</span>
             </span>
           </label>
+
         </div>
 
         <div class="section-heading section-divider">
@@ -273,13 +274,13 @@
         <div class="formula-block">
           <div class="formula-list">
             <p class="formula"><strong>瑞利散射功率</strong><br>P<sub>R</sub> = (E<sub>L</sub> / τ) · n<sub>g</sub> · L · (dσ<sub>R</sub>/dΩ) · ΔΩ</p>
-            <p class="formula"><strong>汤姆逊总光子数</strong><br>N<sub>T</sub> = P<sub>T</sub> · τ · λ / (hc)</p>
+            <p class="formula"><strong>汤姆逊总光子数（简化式）</strong><br>N<sub>T</sub> = (E<sub>L</sub> / hν<sub>i</sub>) · L · ΔΩ · n<sub>e</sub> · (dσ<sub>T</sub>/dΩ)</p>
             <p class="formula"><strong>汤姆逊散射功率</strong><br>P<sub>T</sub> = (E<sub>L</sub> / τ) · n<sub>e</sub> · L · (dσ<sub>T</sub>/dΩ) · ΔΩ</p>
             <p class="formula"><strong>仪器内汤姆逊等效计数</strong><br>N<sub>T,inst</sub> = N<sub>T</sub> · μ · η · G</p>
             <p class="formula"><strong>微分截面</strong><br>dσ<sub>T</sub>/dΩ = r<sub>e</sub>²F(θ, pol), &nbsp; dσ<sub>R</sub>/dΩ = σ<sub>R,532</sub>(532/λ)⁴F(θ, pol)</p>
             <p class="formula"><strong>气体数密度</strong><br>n<sub>g</sub> = p / (k<sub>B</sub>T)</p>
           </div>
-          <p>其中 r<sub>e</sub> = 2.8179 × 10⁻¹⁵ m，μ为全光路透过率，η为量子效率，G为 MCP 增益。按 μ·η·G 计算的仪器项是 MCP 等效计数；若只统计到达仪器的光子数，则只乘 μ。偏振角分布 F(θ, pol) 使用偶极散射近似；忽略多次散射、吸收、气溶胶米氏散射以及弱色散修正。</p>
+          <p>其中 ν<sub>i</sub> = c/λ。该式由图片中的 ΔV = AL 约去光束面积 A 得到，因此不需要额外输入光斑半径。r<sub>e</sub> = 2.8179 × 10⁻¹⁵ m，μ为全光路透过率，η为量子效率，G为 MCP 增益。按 μ·η·G 计算的仪器项是 MCP 等效计数；若只统计到达仪器的光子数，则只乘 μ。偏振角分布 F(θ, pol) 使用偶极散射近似；忽略多次散射、吸收、气溶胶米氏散射以及弱色散修正。</p>
           <p class="source-note">适合方案设计和量级估算。用于绝对标定时，应使用实测系统透过率、有效收集长度及对应波长的精确截面。</p>
         </div>
       </div>
