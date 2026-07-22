@@ -220,6 +220,13 @@ select[aria-invalid="true"] {
   width: min(520px, 100%);
 }
 
+.instrument-note {
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
 .advanced-settings {
   margin-top: 32px;
   border-top: 1px solid var(--line);
@@ -311,6 +318,31 @@ select[aria-invalid="true"] {
   margin-top: 10px;
   color: #a8c1bb;
   font-size: 12px;
+}
+
+.secondary-metric {
+  margin-top: 23px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.secondary-metric p {
+  margin-bottom: 10px;
+  color: #c7d8d4;
+  font-size: 12px;
+}
+
+.secondary-metric strong {
+  min-height: 29px;
+  font-size: 20px;
+}
+
+.secondary-metric span {
+  margin-top: 7px;
+}
+
+.two-result-columns {
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
 }
 
 .calculation-details {
