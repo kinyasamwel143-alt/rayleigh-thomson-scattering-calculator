@@ -24,6 +24,9 @@
     solidAngle: 0.01,
     scatteringAngle: 90,
     electronDensity: "1e18",
+    opticalTransmission: 100,
+    quantumEfficiency: 100,
+    mcpGain: "1",
     polarization: "perpendicular",
   });
 
@@ -94,9 +97,14 @@
     const solidAngleSr = readPositiveNumber("solid-angle", "收集立体角");
     const scatteringAngleDeg = readPositiveNumber("scattering-angle", "散射角", true);
     const electronDensityM3 = readPositiveNumber("electron-density", "电子密度", true);
+    const opticalTransmissionPercent = readPositiveNumber("optical-transmission", "光路透过率", true);
+    const quantumEfficiencyPercent = readPositiveNumber("quantum-efficiency", "量子效率", true);
+    const mcpGain = readPositiveNumber("mcp-gain", "MCP 增益");
 
     if (solidAngleSr > 4 * Math.PI) throw new Error("收集立体角不能超过 4π sr。 ");
     if (scatteringAngleDeg > 180) throw new Error("散射角应在 0° 到 180° 之间。 ");
+    if (opticalTransmissionPercent > 100) throw new Error("光路透过率不能超过 100%。 ");
+    if (quantumEfficiencyPercent > 100) throw new Error("量子效率不能超过 100%。 ");
 
     const gasKey = gasSelect.value;
     const crossSection532 = gasKey === "custom"
@@ -113,6 +121,9 @@
       solidAngleSr,
       scatteringAngleDeg,
       electronDensityM3,
+      opticalTransmissionFraction: opticalTransmissionPercent / 100,
+      quantumEfficiencyFraction: quantumEfficiencyPercent / 100,
+      mcpGain,
       polarization: $("polarization").value,
       crossSection532
     };
@@ -127,9 +138,10 @@
         : "";
 
       $("scattered-power").textContent = engineering(output.scatteredPower, "W");
-      $("thomson-photon-count").textContent = scientific(output.thomsonPhotonCount, 3);
+      $("instrument-thomson-photon-count").textContent = scientific(output.instrumentThomsonPhotonCount, 3);
       $("thomson-power").textContent = engineering(output.thomsonScatteredPower, "W");
       $("laser-power").textContent = engineering(output.laserPower, "W");
+      $("thomson-photon-count").textContent = `${scientific(output.thomsonPhotonCount, 3)} photons/pulse`;
       $("number-density").textContent = `${scientific(output.numberDensity, 3)} m⁻³`;
       $("differential-cross-section").textContent = `${scientific(output.differentialCrossSection, 3)} m²/sr`;
       $("electron-density-output").textContent = `${scientific(input.electronDensityM3, 3)} m⁻³`;
@@ -157,6 +169,9 @@
     $("solid-angle").value = DEFAULTS.solidAngle;
     $("scattering-angle").value = DEFAULTS.scatteringAngle;
     $("electron-density").value = DEFAULTS.electronDensity;
+    $("optical-transmission").value = DEFAULTS.opticalTransmission;
+    $("quantum-efficiency").value = DEFAULTS.quantumEfficiency;
+    $("mcp-gain").value = DEFAULTS.mcpGain;
     $("polarization").value = DEFAULTS.polarization;
     customCrossSectionField.hidden = true;
     form.querySelectorAll("[aria-invalid]").forEach((element) => element.removeAttribute("aria-invalid"));
