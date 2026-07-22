@@ -53,6 +53,10 @@
     const photonEnergy = PLANCK * LIGHT_SPEED / (input.wavelengthNm * 1e-9);
     const photonCount = scatteredEnergy / photonEnergy;
     const thomsonPhotonCount = thomsonScatteredEnergy / photonEnergy;
+    const instrumentThomsonPhotonCount = thomsonPhotonCount
+      * input.opticalTransmissionFraction
+      * input.quantumEfficiencyFraction
+      * input.mcpGain;
 
     return {
       numberDensity,
@@ -67,6 +71,7 @@
       thomsonScatteredPower,
       photonCount,
       thomsonPhotonCount,
+      instrumentThomsonPhotonCount,
     };
   }
 
