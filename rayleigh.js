@@ -52,7 +52,9 @@
     const thomsonScatteredPower = laserPower * thomsonScatteredFraction;
     const photonEnergy = PLANCK * LIGHT_SPEED / (input.wavelengthNm * 1e-9);
     const photonCount = scatteredEnergy / photonEnergy;
-    const thomsonPhotonCount = thomsonScatteredEnergy / photonEnergy;
+    const thomsonPhotonCount = input.pulseEnergyJ / photonEnergy
+      * input.collectionLengthM * input.solidAngleSr
+      * input.electronDensityM3 * thomsonDifferentialCrossSection;
     const instrumentThomsonPhotonCount = thomsonPhotonCount
       * input.opticalTransmissionFraction
       * input.quantumEfficiencyFraction
