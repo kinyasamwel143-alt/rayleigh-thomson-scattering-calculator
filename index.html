@@ -170,6 +170,41 @@
           </span>
         </label>
 
+        <div class="section-heading section-divider">
+          <div>
+            <p class="step-label">05</p>
+            <h2>仪器响应</h2>
+          </div>
+        </div>
+
+        <div class="input-grid three-columns">
+          <label class="field">
+            <span>光路透过率 μ</span>
+            <span class="input-with-suffix">
+              <input id="optical-transmission" type="number" value="100" min="0" max="100" step="any" required>
+              <span>%</span>
+            </span>
+          </label>
+
+          <label class="field">
+            <span>量子效率 η</span>
+            <span class="input-with-suffix">
+              <input id="quantum-efficiency" type="number" value="100" min="0" max="100" step="any" required>
+              <span>%</span>
+            </span>
+          </label>
+
+          <label class="field">
+            <span>MCP 增益 G</span>
+            <span class="input-with-suffix">
+              <input id="mcp-gain" type="text" inputmode="decimal" value="1" required>
+              <span>×</span>
+            </span>
+          </label>
+        </div>
+
+        <p class="instrument-note">μ、η、G 均为可变输入；默认采用理想响应 μ=100%、η=100%、G=1。</p>
+
         <details class="advanced-settings">
           <summary>高级设置</summary>
           <div class="input-grid advanced-grid">
@@ -198,16 +233,16 @@
           <p id="result-context">进入 0.01 sr 收集立体角的散射信号</p>
         </div>
 
-        <div class="result-grid">
+        <div class="result-grid two-result-columns">
           <article class="result-card primary-result">
             <p>瑞利散射功率</p>
             <strong id="scattered-power">0.588 W</strong>
             <span>脉冲期间平均值</span>
-          </article>
-          <article class="result-card">
-            <p>汤姆逊散射总光子数</p>
-            <strong id="thomson-photon-count">8.51 × 10³</strong>
-            <span>photons / pulse</span>
+            <div class="secondary-metric">
+              <p>仪器内汤姆逊散射光子数（μ·η·G）</p>
+              <strong id="instrument-thomson-photon-count">8.51 × 10³</strong>
+              <span>仪器等效计数 / pulse</span>
+            </div>
           </article>
           <article class="result-card">
             <p>汤姆逊散射功率</p>
@@ -218,7 +253,7 @@
 
         <div class="calculation-details">
           <dl>
-            <div><dt>激光脉冲功率</dt><dd id="laser-power">200 MW</dd></div>
+            <div><dt>激光脉冲功率 / 汤姆逊总光子数</dt><dd><span id="laser-power">200 MW</span><br><span id="thomson-photon-count">8.51 × 10³ photons/pulse</span></dd></div>
             <div><dt>气体数密度</dt><dd id="number-density">2.50 × 10²⁵ m⁻³</dd></div>
             <div><dt>瑞利微分截面</dt><dd id="differential-cross-section">5.87 × 10⁻³² m²/sr</dd></div>
             <div><dt>电子密度</dt><dd id="electron-density-output">1.00 × 10¹⁸ m⁻³</dd></div>
@@ -239,10 +274,11 @@
             <p class="formula"><strong>瑞利散射功率</strong><br>P<sub>R</sub> = (E<sub>L</sub> / τ) · n<sub>g</sub> · L · (dσ<sub>R</sub>/dΩ) · ΔΩ</p>
             <p class="formula"><strong>汤姆逊总光子数</strong><br>N<sub>T</sub> = P<sub>T</sub> · τ · λ / (hc)</p>
             <p class="formula"><strong>汤姆逊散射功率</strong><br>P<sub>T</sub> = (E<sub>L</sub> / τ) · n<sub>e</sub> · L · (dσ<sub>T</sub>/dΩ) · ΔΩ</p>
+            <p class="formula"><strong>仪器内汤姆逊等效计数</strong><br>N<sub>T,inst</sub> = N<sub>T</sub> · μ · η · G</p>
             <p class="formula"><strong>微分截面</strong><br>dσ<sub>T</sub>/dΩ = r<sub>e</sub>²F(θ, pol), &nbsp; dσ<sub>R</sub>/dΩ = σ<sub>R,532</sub>(532/λ)⁴F(θ, pol)</p>
             <p class="formula"><strong>气体数密度</strong><br>n<sub>g</sub> = p / (k<sub>B</sub>T)</p>
           </div>
-          <p>其中 r<sub>e</sub> = 2.8179 × 10⁻¹⁵ m。偏振角分布 F(θ, pol) 使用偶极散射近似；忽略多次散射、吸收、气溶胶米氏散射以及弱色散修正。</p>
+          <p>其中 r<sub>e</sub> = 2.8179 × 10⁻¹⁵ m，μ为全光路透过率，η为量子效率，G为 MCP 增益。按 μ·η·G 计算的仪器项是 MCP 等效计数；若只统计到达仪器的光子数，则只乘 μ。偏振角分布 F(θ, pol) 使用偶极散射近似；忽略多次散射、吸收、气溶胶米氏散射以及弱色散修正。</p>
           <p class="source-note">适合方案设计和量级估算。用于绝对标定时，应使用实测系统透过率、有效收集长度及对应波长的精确截面。</p>
         </div>
       </div>
