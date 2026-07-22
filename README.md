@@ -16,7 +16,7 @@ P_R = (E_L / tau) * (p / k_B T) * L * (d sigma / d Omega) * Delta Omega
 
 P_T = (E_L / tau) * n_e * L * (d sigma_T / d Omega) * Delta Omega
 
-N_T = P_T * tau * wavelength / (h * c)
+N_T = (E_L / (h * nu_i)) * L * DeltaOmega * n_e * (d sigma_T / d Omega)
 
 N_T_inst = N_T * mu * eta * G
 ```
